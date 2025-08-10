@@ -1,6 +1,8 @@
 /* 引入字体 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css');
+
 
 /* 全局 CSS 变量 - 简洁配色方案 */
 :root {
@@ -33,13 +35,6 @@ body {
   line-height: 1.8; /* 增加行高，提升阅读舒适度 */
 }
 
-/* 主要内容区域 */
-main {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
 /* 头部导航栏样式 */
 header {
   border-bottom: 1px solid var(--color-border);
@@ -52,6 +47,27 @@ header nav {
   margin: 0 auto;
   display: flex;
   gap: 1.5rem;
+}
+
+/* 主要内容和侧边栏的容器 */
+.main-container {
+  display: grid;
+  grid-template-columns: minmax(auto, 700px) 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* 仅包含主要内容的容器 */
+.main-container-simple {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+/* 文章主体内容样式 */
+main {
+  padding: 0;
 }
 
 /* 标题样式 - 建立清晰的层级 */
@@ -111,6 +127,49 @@ blockquote {
   padding-left: 1rem;
   margin-bottom: 1.5rem;
   color: var(--color-secondary-text);
+}
+
+/* 侧边栏样式 */
+.toc-sidebar {
+  position: sticky;
+  top: 2rem;
+  height: calc(100vh - 4rem);
+  padding-left: 2rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.toc-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.toc-sidebar h3 {
+  margin-top: 0;
+}
+
+.toc-sidebar ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.toc-sidebar li a {
+  color: var(--color-secondary-text);
+  text-decoration: none;
+  transition: color 0.2s;
+  border-bottom: none;
+}
+
+.toc-sidebar li a:hover {
+  color: var(--color-link-hover);
+}
+
+.toc-list-item.h3 {
+  padding-left: 1rem;
 }
 
 /* 页脚样式 - 古典字体和间距 */

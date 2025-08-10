@@ -1,12 +1,14 @@
 import { defineConfig } from 'astro/config';
 import rehypeMathjax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
+import rehypeSlug from 'rehype-slug';
 
 export default defineConfig({
   integrations: [],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [
+      rehypeSlug,
       [rehypeMathjax, {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']],

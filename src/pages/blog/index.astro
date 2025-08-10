@@ -5,13 +5,17 @@ const allBlogPosts = await getCollection("blog");
 ---
 
 <BaseLayout title="我的博客">
-  <h1>所有博客文章</h1>
-  <ul>
-    {allBlogPosts.map(post => (
-      <li>
-        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-        - {post.data.pubDate.toLocaleDateString('zh-CN')}
-      </li>
-    ))}
-  </ul>
+  <div class="main-container">
+    <main>
+      <h1>所有博客文章</h1>
+      <ul>
+        {allBlogPosts.map(post => (
+          <li>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            - {post.data.pubDate.toLocaleDateString('zh-CN')}
+          </li>
+        ))}
+      </ul>
+    </main>
+  </div>
 </BaseLayout>

@@ -14,7 +14,11 @@ const { title = "aeolira 的个人网站" } = Astro.props;
   </head>
   <body>
     <Header />
-    <slot />
+    <div class="main-container">
+      <main>
+        <slot />
+      </main>
+    </div>
     <Footer />
   </body>
 </html>

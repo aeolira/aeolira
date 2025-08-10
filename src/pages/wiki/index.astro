@@ -5,12 +5,16 @@ const allWikiPages = await getCollection("wiki");
 ---
 
 <BaseLayout title="我的维基库">
-  <h1>我的维基库</h1>
-  <ul>
-    {allWikiPages.map(page => (
-      <li>
-        <a href={`/wiki/${page.slug}`}>{page.data.title}</a>
-      </li>
-    ))}
-  </ul>
+  <div class="main-container">
+    <main>
+      <h1>我的维基库</h1>
+      <ul>
+        {allWikiPages.map(page => (
+          <li>
+            <a href={`/wiki/${page.slug}`}>{page.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </main>
+  </div>
 </BaseLayout>

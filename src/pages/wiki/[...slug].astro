@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const wikiEntries = await getCollection("wiki");
@@ -16,10 +17,18 @@ type Props = {
 };
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 ---
 
 <BaseLayout title={entry.data.title}>
-  <h1>{entry.data.title}</h1>
-  <Content />
+  <div class="main-container">
+    <main>
+      <h1>{entry.data.title}</h1>
+      <Content />
+    </main>
+
+    {headings.length > 0 && (
+      <TableOfContents headings={headings} />
+    )}
+  </div>
 </BaseLayout>

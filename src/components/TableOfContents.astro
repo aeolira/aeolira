@@ -1,0 +1,24 @@
+---
+interface Props {
+  headings: {
+    slug: string;
+    text: string;
+    depth: number;
+  }[];
+}
+
+const { headings } = Astro.props;
+// 确保只显示 h2 和 h3 标题
+const visibleHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
+---
+
+<aside class="toc-sidebar">
+  <h3>目录</h3>
+  <ol>
+    {visibleHeadings.map(h => (
+      <li class={`toc-list-item h${h.depth}`}>
+        <a href={`#${h.slug}`}>{h.text}</a>
+      </li>
+    ))}
+  </ol>
+</aside>
