@@ -4,6 +4,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const allWikiPages = await getCollection("wiki");
 ---
 
+<link rel="stylesheet" href="/styles/wiki.css">
+
 <BaseLayout title="我的维基库">
   <div class="main-container">
     <main>

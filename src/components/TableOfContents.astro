@@ -8,8 +8,7 @@ interface Props {
 }
 
 const { headings } = Astro.props;
-// 确保只显示 h2 和 h3 标题
-const visibleHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
+const visibleHeadings = headings.filter(h => h.depth > 1);
 ---
 
 <aside class="toc-sidebar">
@@ -22,3 +21,70 @@ const visibleHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
     ))}
   </ol>
 </aside>
+
+<style>
+  .toc-sidebar {
+    position: sticky;
+    top: 2rem;
+    /* 移除固定的高度，让其随内容自动增长 */
+    height: auto; 
+    padding-left: 2rem;
+    overflow-y: hidden;
+    /* 隐藏滚动条 */
+    scrollbar-width: none;
+  }
+  
+  .toc-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .toc-sidebar h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+
+  .toc-sidebar ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .toc-sidebar li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4; /* 增加行高，让换行的文字更清晰 */
+  }
+
+  .toc-sidebar li a {
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    transition: color 0.2s;
+    border-bottom: none;
+    font-size: 0.9rem;
+    
+    /* 移除强制单行显示和省略号的样式 */
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .toc-sidebar li a:hover {
+    color: var(--color-link-hover);
+  }
+
+  /* 根据标题深度添加缩进 */
+  .toc-list-item.h3 {
+    padding-left: 1rem;
+  }
+
+  .toc-list-item.h4 {
+    padding-left: 2rem;
+  }
+  
+  .toc-list-item.h5 {
+    padding-left: 3rem;
+  }
+
+  .toc-list-item.h6 {
+    padding-left: 4rem;
+  }
+</style>

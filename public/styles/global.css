@@ -8,13 +8,13 @@
 :root {
   --font-body: 'Noto Serif SC', serif;
   --font-footer: 'Zhi Mang Xing', serif;
-  --color-text: #333;           /* 主体文字颜色 */
-  --color-secondary-text: #666;  /* 次级文字颜色 */
-  --color-background: #fff;      /* 背景颜色 */
-  --color-border: #eee;          /* 分隔线颜色 */
-  --color-code-bg: #f8f8f8;      /* 代码块背景色 */
-  --color-link: #333;            /* 链接颜色 */
-  --color-link-hover: #000;      /* 链接悬停颜色 */
+  --color-text: #333;
+  --color-secondary-text: #666;
+  --color-background: #fff;
+  --color-border: #eee;
+  --color-code-bg: #f8f8f8;
+  --color-link: #333;
+  --color-link-hover: #000;
 }
 
 /* 基础重置和排版 */
@@ -25,14 +25,14 @@
 }
 
 html {
-  font-size: 18px; /* 基础字号 */
+  font-size: 18px;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--color-text);
   background-color: var(--color-background);
-  line-height: 1.8; /* 增加行高，提升阅读舒适度 */
+  line-height: 1.8;
 }
 
 /* 头部导航栏样式 */
@@ -49,22 +49,13 @@ header nav {
   gap: 1.5rem;
 }
 
-/* 主要内容和侧边栏的容器 */
-.main-container {
-  display: grid;
-  grid-template-columns: minmax(auto, 700px) 1fr;
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
 /* 仅包含主要内容的容器 */
 .main-container-simple {
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
 /* 文章主体内容样式 */
 main {
   padding: 0;
@@ -72,7 +63,7 @@ main {
 
 /* 标题样式 - 建立清晰的层级 */
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 2.5rem; /* 增加标题上间距 */
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -99,7 +90,7 @@ ul li, ol li {
 a {
   color: var(--color-link);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-link); /* 增加下划线 */
+  border-bottom: 1px solid var(--color-link);
   transition: color 0.2s, border-bottom 0.2s;
 }
 
@@ -127,49 +118,6 @@ blockquote {
   padding-left: 1rem;
   margin-bottom: 1.5rem;
   color: var(--color-secondary-text);
-}
-
-/* 侧边栏样式 */
-.toc-sidebar {
-  position: sticky;
-  top: 2rem;
-  height: calc(100vh - 4rem);
-  padding-left: 2rem;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.toc-sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-.toc-sidebar h3 {
-  margin-top: 0;
-}
-
-.toc-sidebar ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.toc-sidebar li {
-  margin-bottom: 0.5rem;
-}
-
-.toc-sidebar li a {
-  color: var(--color-secondary-text);
-  text-decoration: none;
-  transition: color 0.2s;
-  border-bottom: none;
-}
-
-.toc-sidebar li a:hover {
-  color: var(--color-link-hover);
-}
-
-.toc-list-item.h3 {
-  padding-left: 1rem;
 }
 
 /* 页脚样式 - 古典字体和间距 */

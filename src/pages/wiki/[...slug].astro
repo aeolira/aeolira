@@ -12,13 +12,11 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = {
-  entry: CollectionEntry<"wiki">;
-};
-
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 ---
+
+<link rel="stylesheet" href="/styles/wiki.css">
 
 <BaseLayout title={entry.data.title}>
   <div class="main-container">

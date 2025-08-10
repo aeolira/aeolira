@@ -1,0 +1,12 @@
+/* wiki.css */
+
+/* 主要内容和侧边栏的容器 */
+.main-container {
+  display: grid;
+  /* 调整网格布局，让主内容和侧边栏各占一部分，并留有最小宽度 */
+  grid-template-columns: minmax(300px, 700px) minmax(200px, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
