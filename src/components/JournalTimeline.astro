@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import dayjs from 'dayjs';
+
+const journalEntries = await getCollection('journal');
+const sortedEntries = journalEntries.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 将日志按天分组
+const groupedEntries = sortedEntries.reduce((acc, entry) => {
+  const dateKey = dayjs(entry.data.pubDate).format('YYYY年M月D日');
+  if (!acc[dateKey]) {
+    acc[dateKey] = [];
+  }
+  acc[dateKey].push(entry);
+  return acc;
+}, {});
+
+const sortedGroupedEntries = Object.entries(groupedEntries).sort(([dateA], [dateB]) => {
+  return dayjs(dateB, 'YYYY年M月D日').unix() - dayjs(dateA, 'YYYY年M月D日').unix();
+});
+---
+<div class="journal-timeline-container">
+  <h2>我的日志时间轴</h2>
+  <div class="timeline">
+    {sortedGroupedEntries.map(([date, entries], index) => (
+      <div class="timeline-entry">
+        <div class="timeline-date">{date}</div>
+        <div class="timeline-center">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-content-block">
+          <details>
+            <summary class="timeline-summary">
+              <span class="timeline-date-text">点击展开</span>
+            </summary>
+            <div class="timeline-logs">
+              {entries.map((entry, entryIndex) => (
+                <div class="timeline-log">
+                  <span class="entry-number">{entryIndex + 1}.</span>
+                  <p>{entry.body}</p>
+                </div>
+              ))}
+            </div>
+          </details>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+<style>
+/* JournalTimeline.astro 的样式 */
+.journal-timeline-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.journal-timeline-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 1fr 2rem 1fr;
+  align-items: flex-start;
+  padding-bottom: 3rem; /* 增加条目间距 */
+  position: relative;
+}
+
+/* 中间的竖线 */
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-entry:first-child::before {
+  top: 1rem;
+}
+
+.timeline-entry:last-child::before {
+  height: 2.5rem;
+}
+
+.timeline-date {
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--color-secondary-text);
+  padding-right: 1.5rem;
+  padding-top: 0.2rem;
+  line-height: 1.5rem;
+}
+
+.timeline-center {
+  position: relative;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-text);
+  border-radius: 50%;
+  z-index: 1;
+  position: relative;
+}
+
+.timeline-content-block {
+  padding-left: 1.5rem;
+}
+
+.timeline-summary {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style-type: none;
+  font-size: 0.9rem;
+  color: var(--color-secondary-text);
+  position: relative;
+  line-height: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-summary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.5rem;
+  border-color: transparent transparent transparent var(--color-text);
+  transition: transform 0.2s;
+}
+
+details[open] .timeline-summary::before {
+  transform: rotate(90deg);
+}
+
+.timeline-logs {
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+}
+
+.timeline-log {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.entry-number {
+  font-weight: bold;
+}
+</style>

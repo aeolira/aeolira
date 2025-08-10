@@ -1,13 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import JournalTimeline from "../components/JournalTimeline.astro";
 ---
 
 <BaseLayout>
-	<div class="main-container-simple">
-		<main>
-			<h1>欢迎来到我的个人网站</h1>
-			<p>这里是我的博客和知识库。</p>
-			<p>你可以通过导航栏访问它们。</p>
-		</main>
-	</div>
+  <div class="main-container-simple">
+    <main>
+      <h1>欢迎来到我的个人网站</h1>
+      <p>这里是我的博客和知识库。</p>
+      <p>你可以通过导航栏访问它们。</p>
+
+      <section>
+        <JournalTimeline />
+      </section>
+    </main>
+  </div>
 </BaseLayout>
