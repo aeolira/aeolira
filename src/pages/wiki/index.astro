@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const allWikiPages = await getCollection("wiki");
+---
+
+<BaseLayout title="我的维基库">
+  <h1>我的维基库</h1>
+  <ul>
+    {allWikiPages.map(page => (
+      <li>
+        <a href={`/wiki/${page.slug}`}>{page.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

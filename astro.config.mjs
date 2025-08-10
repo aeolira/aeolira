@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { getEntries } from 'astro:content';
+
 
 export default defineConfig({
   integrations: [],

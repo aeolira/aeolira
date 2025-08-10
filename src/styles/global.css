@@ -1,0 +1,126 @@
+/* 引入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+
+/* 全局 CSS 变量 - 简洁配色方案 */
+:root {
+  --font-body: 'Noto Serif SC', serif;
+  --font-footer: 'Zhi Mang Xing', serif;
+  --color-text: #333;           /* 主体文字颜色 */
+  --color-secondary-text: #666;  /* 次级文字颜色 */
+  --color-background: #fff;      /* 背景颜色 */
+  --color-border: #eee;          /* 分隔线颜色 */
+  --color-code-bg: #f8f8f8;      /* 代码块背景色 */
+  --color-link: #333;            /* 链接颜色 */
+  --color-link-hover: #000;      /* 链接悬停颜色 */
+}
+
+/* 基础重置和排版 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px; /* 基础字号 */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.8; /* 增加行高，提升阅读舒适度 */
+}
+
+/* 主要内容区域 */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* 头部导航栏样式 */
+header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem;
+  font-weight: 700;
+}
+
+header nav {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* 标题样式 - 建立清晰的层级 */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2.5rem; /* 增加标题上间距 */
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.5rem; }
+
+/* 段落和列表样式 - 优化间距 */
+p {
+  margin-bottom: 1.5rem;
+}
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+ul li, ol li {
+  margin-bottom: 0.5rem;
+}
+
+/* 链接样式 */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-link); /* 增加下划线 */
+  transition: color 0.2s, border-bottom 0.2s;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  border-bottom-color: var(--color-link-hover);
+}
+
+/* 代码块样式 */
+pre {
+  background-color: var(--color-code-bg);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+code {
+  font-family: monospace;
+}
+
+/* 引述块样式 */
+blockquote {
+  border-left: 4px solid var(--color-border);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary-text);
+}
+
+/* 页脚样式 - 古典字体和间距 */
+footer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-family: var(--font-footer);
+  font-size: 1.5rem;
+  line-height: 2;
+}
