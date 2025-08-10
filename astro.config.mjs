@@ -6,7 +6,13 @@ export default defineConfig({
   integrations: [],
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeMathjax],
+    rehypePlugins: [
+      [rehypeMathjax, {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        }
+      }]
+    ],
   },
   content: {
     collections: {
