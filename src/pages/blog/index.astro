@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
 const allBlogPosts = await getCollection("blog");
+// 我们现在直接从 post.data 中获取标题和描述
+// 注意：pubDate 等字段需要您在自定义插件中添加
 ---
 
 <BaseLayout title="我的博客">
@@ -12,7 +15,7 @@ const allBlogPosts = await getCollection("blog");
         {allBlogPosts.map(post => (
           <li>
             <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-            - {post.data.pubDate.toLocaleDateString('zh-CN')}
+            <p>{post.data.description}</p>
           </li>
         ))}
       </ul>

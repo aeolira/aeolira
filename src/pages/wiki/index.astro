@@ -14,6 +14,7 @@ const allWikiPages = await getCollection("wiki");
         {allWikiPages.map(page => (
           <li>
             <a href={`/wiki/${page.slug}`}>{page.data.title}</a>
+            {page.data.classification && <p>分类: {page.data.classification.join(' > ')}</p>}
           </li>
         ))}
       </ul>

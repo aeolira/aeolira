@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -23,8 +24,17 @@ const { Content } = await entry.render();
   <div class="main-container-simple">
     <main>
       <h1>{entry.data.title}</h1>
-      <p>发布日期: {entry.data.pubDate.toLocaleDateString('zh-CN')}</p>
       <Content />
+      {entry.data.tags && (
+        <div class="tags">
+          <p>标签：</p>
+          <ul>
+            {entry.data.tags.map(tag => (
+              <li>#{tag}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </main>
   </div>
 </BaseLayout>
